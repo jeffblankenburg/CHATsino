@@ -1,0 +1,207 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "chat sino",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "HelloWorldIntent",
+                    "slots": [],
+                    "samples": [
+                        "hello",
+                        "how are you",
+                        "say hi world",
+                        "say hi",
+                        "hi",
+                        "say hello world",
+                        "say hello"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "StartGameIntent",
+                    "slots": [
+                        {
+                            "name": "wager",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "bet {wager}",
+                                "{wager}"
+                            ]
+                        },
+                        {
+                            "name": "game",
+                            "type": "Game",
+                            "samples": [
+                                "Play {game}",
+                                "I want to play {game} ",
+                                "{game}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "bet {wager} coins on {game}",
+                        "{game} for {wager}",
+                        "play {game} for {wager}",
+                        "bet {wager} on {game}"
+                    ]
+                },
+                {
+                    "name": "BalanceIntent",
+                    "slots": [],
+                    "samples": [
+                        "what is my coin total",
+                        "what is my total",
+                        "how many chips do I have",
+                        "what is my chip count",
+                        "how many coins do I have",
+                        "what is my balance",
+                        "how much do I have",
+                        "balance",
+                        "bank"
+                    ]
+                },
+                {
+                    "name": "PaytableIntent",
+                    "slots": [
+                        {
+                            "name": "game",
+                            "type": "Game",
+                            "samples": [
+                                "{game}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "what are the odds for {game}",
+                        "{game} odds",
+                        "{game} pay table",
+                        "paytable {game}",
+                        "give me the {game} paytable",
+                        "show me the paytable for {game}",
+                        "what is the {game} paytable"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "Game",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "craps"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "blackjack"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "roulette"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "poker",
+                                "synonyms": [
+                                    "video poker"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "slots"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "StartGameIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "wager",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1598215965934.223573084161"
+                            }
+                        },
+                        {
+                            "name": "game",
+                            "type": "Game",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1598215965934.10576902443"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1598215965934.223573084161",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "How much are you betting on {game} ?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "You want to play {game} .  What's your bet?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "OK. {game} .  What is your wager?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "OK.  How much do you want to wager on {game} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1598215965934.10576902443",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "OK.  You're betting {wager} .  Which game should we bet on?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I heard that you want to bet {wager} .  Which game did you want to play?"
+                    }
+                ]
+            }
+        ]
+    }
+}
