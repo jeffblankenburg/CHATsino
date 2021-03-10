@@ -1,6 +1,16 @@
 const Alexa = require('ask-sdk-core');
 const handlers = require("./handlers");
 
+const BalanceIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'BalanceIntent';
+    },
+    handle(handlerInput) {
+        return handlers.BalanceIntent(handlerInput);
+    }
+};
+
 const CancelIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -27,6 +37,16 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         return handlers.LaunchRequest(handlerInput);
+    }
+};
+
+const PaytableIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'PaytableIntent';
+    },
+    handle(handlerInput) {
+        return handlers.PaytableIntent(handlerInput);
     }
 };
 
@@ -100,6 +120,8 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         StartGameIntentHandler,
+        BalanceIntentHandler,
+        PaytableIntentHandler,
         HelpIntentHandler,
         CancelIntentHandler,
         StopIntentHandler,
